@@ -22,6 +22,8 @@ uint16_t LCD_getHeight();
 
 void LCD_init();
 
+void SPI_SendCmd8(uint8_t cmd, uint8_t n);
+
 void LCD_setSpi8(void);
 void LCD_setSpi16(void);
 

@@ -1,0 +1,336 @@
+2019-07-17 18:31:41,731 [INFO] Activator:176 - 
+
+
+2019-07-17 18:31:41,735 [INFO] Activator:177 - !SESSION log4j initialized
+2019-07-17 18:31:58,267 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903
+2019-07-17 18:31:58,284 [INFO] DbMcusXml:68 - Set database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/mcu/
+2019-07-17 18:31:58,289 [INFO] DbBoardsPdsc:54 - Set plugin database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/boardmanager/
+2019-07-17 18:31:58,289 [INFO] DbMcus:264 - Set plugin images path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/images/
+2019-07-17 18:31:58,290 [INFO] DbBoards:232 - Set plugin images path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/images/
+2019-07-17 18:31:58,293 [INFO] APIGFXSelector:72 - Set database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/mcu/
+2019-07-17 18:31:58,300 [INFO] DbMcusAds:72 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,301 [INFO] DbMcusDocs:92 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,304 [INFO] DbMcusJson:59 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,305 [INFO] DbBoardsDocs:84 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,306 [INFO] DbBoardsJson:51 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,515 [INFO] CrossReferenceDbSqlite:197 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/cs/
+2019-07-17 18:31:58,612 [INFO] RulesReader:52 - Compatibility file has been processed (156 Rules)
+2019-07-17 18:31:58,760 [INFO] MicroXplorer:521 - Detected Java Version = 1.8.0_202
+2019-07-17 18:31:58,760 [INFO] DbMcusXml:68 - Set database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/mcu/
+2019-07-17 18:31:58,761 [INFO] DbBoardsPdsc:54 - Set plugin database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/boardmanager/
+2019-07-17 18:31:58,762 [INFO] DbMcus:264 - Set plugin images path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/images/
+2019-07-17 18:31:58,762 [INFO] DbBoards:232 - Set plugin images path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/images/
+2019-07-17 18:31:58,763 [INFO] APIGFXSelector:72 - Set database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/mcu/
+2019-07-17 18:31:58,763 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,763 [INFO] DbMcusAds:72 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,763 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,764 [INFO] DbMcusDocs:92 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,764 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,764 [INFO] DbMcusJson:59 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,764 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,764 [INFO] DbBoardsDocs:84 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,765 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,765 [INFO] DbBoardsJson:51 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,765 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,766 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,766 [INFO] CrossReferenceDbSqlite:197 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/cs/
+2019-07-17 18:31:58,852 [INFO] MainPanel:211 - HeapMemory: 281018368
+2019-07-17 18:31:58,946 [INFO] DbMcusXml:68 - Set database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/mcu/
+2019-07-17 18:31:58,946 [INFO] DbBoardsPdsc:54 - Set plugin database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/boardmanager/
+2019-07-17 18:31:58,946 [INFO] DbMcus:264 - Set plugin images path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/images/
+2019-07-17 18:31:58,947 [INFO] DbBoards:232 - Set plugin images path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/images/
+2019-07-17 18:31:58,947 [INFO] APIGFXSelector:72 - Set database path to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/plugins/mcufinder/mcu/
+2019-07-17 18:31:58,948 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,948 [INFO] DbMcusAds:72 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,948 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,948 [INFO] DbMcusDocs:92 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,949 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,949 [INFO] DbMcusJson:59 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,949 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,949 [INFO] DbBoardsDocs:84 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,949 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,950 [INFO] DbBoardsJson:51 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/
+2019-07-17 18:31:58,950 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,950 [WARN] DbFile:31 - Overriding database path with different value: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder/ => C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder
+2019-07-17 18:31:58,950 [INFO] CrossReferenceDbSqlite:197 - Set database path to: C:\Users\Afonso Muralha\.stmcufinder\plugins\mcufinder//mcu/cs/
+2019-07-17 18:31:58,970 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903
+2019-07-17 18:31:58,972 [INFO] PluginManage:178 - Search for loadable plugins [exclusion list=]
+2019-07-17 18:31:58,974 [INFO] PluginManage:292 - Check plugin analytics
+2019-07-17 18:31:58,979 [INFO] PluginManage:342 - Loaded plugin analytics (category:tool,tabindex:-1)
+2019-07-17 18:31:58,979 [INFO] PluginManage:292 - Check plugin clock
+2019-07-17 18:31:58,989 [INFO] PluginManage:342 - Loaded plugin clock (category:base,tabindex:2)
+2019-07-17 18:31:58,989 [INFO] PluginManage:292 - Check plugin ddr
+2019-07-17 18:31:58,992 [INFO] PluginManage:342 - Loaded plugin ddr (category:tool,tabindex:6)
+2019-07-17 18:31:58,992 [INFO] PluginManage:292 - Check plugin filemanager
+2019-07-17 18:31:59,259 [INFO] PluginManage:342 - Loaded plugin filemanager (category:base,tabindex:10)
+2019-07-17 18:31:59,259 [INFO] PluginManage:292 - Check plugin ipmanager
+2019-07-17 18:31:59,267 [INFO] PluginManage:342 - Loaded plugin ipmanager (category:base,tabindex:5)
+2019-07-17 18:31:59,267 [INFO] PluginManage:292 - Check plugin pinoutandconfiguration
+2019-07-17 18:31:59,276 [INFO] PluginManage:342 - Loaded plugin pinoutandconfiguration (category:base,tabindex:1)
+2019-07-17 18:31:59,277 [INFO] PluginManage:292 - Check plugin pinoutconfig
+2019-07-17 18:31:59,296 [INFO] PluginManage:342 - Loaded plugin pinoutconfig (category:base,tabindex:0)
+2019-07-17 18:31:59,297 [INFO] PluginManage:292 - Check plugin power
+2019-07-17 18:31:59,306 [INFO] PluginManage:342 - Loaded plugin power (category:power,tabindex:4)
+2019-07-17 18:31:59,307 [INFO] PluginManage:292 - Check plugin projectmanager
+2019-07-17 18:31:59,319 [INFO] PluginManage:342 - Loaded plugin projectmanager (category:projectmanager,tabindex:3)
+2019-07-17 18:31:59,319 [INFO] PluginManage:292 - Check plugin thirdparty
+2019-07-17 18:31:59,349 [INFO] ThirdPartyDb:294 - Open Third Party DataBase File (C:/Users/Afonso Muralha/.stm32cubemx/plugins/thirdparty/db/thirdparties_db.xml) : 13 ms. number of Sw pack : 5
+2019-07-17 18:31:59,374 [INFO] PluginManage:342 - Loaded plugin thirdparty (category:base,tabindex:-1)
+2019-07-17 18:31:59,374 [INFO] PluginManage:292 - Check plugin tools
+2019-07-17 18:31:59,376 [INFO] PluginManage:342 - Loaded plugin tools (category:base,tabindex:7)
+2019-07-17 18:31:59,377 [INFO] PluginManage:292 - Check plugin updater
+2019-07-17 18:31:59,386 [INFO] PluginManage:342 - Loaded plugin updater (category:base,tabindex:12)
+2019-07-17 18:31:59,387 [INFO] PluginManage:265 - PluginManage : Loaded plugins [12]
+2019-07-17 18:31:59,561 [INFO] PinOutPanel:1367 - setPackage(No Configuration,No Configuration)
+2019-07-17 18:31:59,647 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,647 [INFO] PluginManager:200 - loadIPPluginJar : add adc
+2019-07-17 18:31:59,650 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,650 [INFO] PluginManager:200 - loadIPPluginJar : add aes
+2019-07-17 18:31:59,653 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,653 [INFO] PluginManager:200 - loadIPPluginJar : add can
+2019-07-17 18:31:59,655 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,656 [INFO] PluginManager:200 - loadIPPluginJar : add comp
+2019-07-17 18:31:59,659 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,659 [INFO] PluginManager:200 - loadIPPluginJar : add cryp
+2019-07-17 18:31:59,662 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,662 [INFO] PluginManager:200 - loadIPPluginJar : add dfsdm
+2019-07-17 18:31:59,668 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,669 [INFO] PluginManager:200 - loadIPPluginJar : add dma
+2019-07-17 18:31:59,671 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,671 [INFO] PluginManager:200 - loadIPPluginJar : add fatfs
+2019-07-17 18:31:59,676 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,676 [INFO] PluginManager:200 - loadIPPluginJar : add fmc
+2019-07-17 18:31:59,681 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,681 [INFO] PluginManager:200 - loadIPPluginJar : add freertos
+2019-07-17 18:31:59,683 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,683 [INFO] PluginManager:200 - loadIPPluginJar : add genericplugin
+2019-07-17 18:31:59,685 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,685 [INFO] PluginManager:200 - loadIPPluginJar : add gfxmmu
+2019-07-17 18:31:59,688 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,688 [INFO] PluginManager:200 - loadIPPluginJar : add gfxsimulator
+2019-07-17 18:31:59,694 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,695 [INFO] PluginManager:200 - loadIPPluginJar : add gic
+2019-07-17 18:31:59,698 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,698 [INFO] PluginManager:200 - loadIPPluginJar : add gpio
+2019-07-17 18:31:59,700 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,700 [INFO] PluginManager:200 - loadIPPluginJar : add hash
+2019-07-17 18:31:59,703 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,703 [INFO] PluginManager:200 - loadIPPluginJar : add i2c
+2019-07-17 18:31:59,707 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,708 [INFO] PluginManager:200 - loadIPPluginJar : add i2s
+2019-07-17 18:31:59,711 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,712 [INFO] PluginManager:200 - loadIPPluginJar : add ipddr
+2019-07-17 18:31:59,713 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,713 [INFO] PluginManager:200 - loadIPPluginJar : add ltdc
+2019-07-17 18:31:59,717 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,717 [INFO] PluginManager:200 - loadIPPluginJar : add mdma
+2019-07-17 18:31:59,722 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,722 [INFO] PluginManager:200 - loadIPPluginJar : add nvic
+2019-07-17 18:31:59,726 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,726 [INFO] PluginManager:200 - loadIPPluginJar : add opamp
+2019-07-17 18:31:59,729 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,729 [INFO] PluginManager:200 - loadIPPluginJar : add pdm2pcm
+2019-07-17 18:31:59,736 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,739 [INFO] PluginManager:200 - loadIPPluginJar : add plateformsettings
+2019-07-17 18:31:59,741 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,741 [INFO] PluginManager:200 - loadIPPluginJar : add quadspi
+2019-07-17 18:31:59,744 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,745 [INFO] PluginManager:200 - loadIPPluginJar : add resmgrutility
+2019-07-17 18:31:59,747 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,748 [INFO] PluginManager:200 - loadIPPluginJar : add sai
+2019-07-17 18:31:59,750 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,751 [INFO] PluginManager:200 - loadIPPluginJar : add spi
+2019-07-17 18:31:59,753 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,753 [INFO] PluginManager:200 - loadIPPluginJar : add stm32_wpan
+2019-07-17 18:31:59,755 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,756 [INFO] PluginManager:200 - loadIPPluginJar : add tim
+2019-07-17 18:31:59,760 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,760 [INFO] PluginManager:200 - loadIPPluginJar : add touchsensing
+2019-07-17 18:31:59,763 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,763 [INFO] PluginManager:200 - loadIPPluginJar : add tracer_emb
+2019-07-17 18:31:59,766 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,766 [INFO] PluginManager:200 - loadIPPluginJar : add ts
+2019-07-17 18:31:59,768 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,768 [INFO] PluginManager:200 - loadIPPluginJar : add tsc
+2019-07-17 18:31:59,770 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,771 [INFO] PluginManager:200 - loadIPPluginJar : add ucpd
+2019-07-17 18:31:59,774 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:31:59,774 [INFO] PluginManager:200 - loadIPPluginJar : add usart
+2019-07-17 18:32:01,500 [INFO] BoardConnectionPanel:217 - [DDR PANEL] osNameString: Windows
+2019-07-17 18:32:01,802 [FATAL] Updater:277 - Updater called before beeing initialized
+2019-07-17 18:32:02,279 [FATAL] Updater:277 - Updater called before beeing initialized
+2019-07-17 18:32:02,291 [INFO] PinOutPanel:1367 - setPackage(No Configuration,No Configuration)
+2019-07-17 18:32:02,291 [FATAL] Updater:277 - Updater called before beeing initialized
+2019-07-17 18:32:02,295 [INFO] MainDdrPanel:82 - [DDR PANEL] SETTER - Set cubeProgrammerPath to: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_1.0.0.201904021149\tools\bin
+2019-07-17 18:32:02,300 [INFO] Updater:860 - Updater Version found : 5.3.0
+2019-07-17 18:32:02,312 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903
+2019-07-17 18:32:02,360 [FATAL] Updater:277 - Updater called before beeing initialized
+2019-07-17 18:32:02,361 [ERROR] IntegrityCheckThread:230 - Cannot obtain thirdParties list 21
+2019-07-17 18:32:02,361 [ERROR] IntegrityCheckThread:99 - Unexpected exception IntegrityCheckThread Thread: Updater error
+2019-07-17 18:32:02,361 [INFO] ThirdPartyDb:264 - Close Third Party DataBase File (C:/Users/Afonso Muralha/.stm32cubemx/plugins/thirdparty/db/thirdparties_db.xml)
+2019-07-17 18:32:02,369 [INFO] MainUpdater:2040 - connection check result : 10
+2019-07-17 18:32:02,370 [INFO] MainUpdater:229 - Updater Check For Update Now.
+2019-07-17 18:32:02,370 [INFO] MicroXplorer:401 - Change Database Version : DB.5.0.30
+2019-07-17 18:32:02,398 [INFO] CheckServerUpdateThread:121 - End of CheckServer Thread
+2019-07-17 18:32:02,572 [INFO] MainUpdater:2040 - connection check result : 10
+2019-07-17 18:32:02,574 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Successfull proxy connection.
+2019-07-17 18:32:02,726 [INFO] MicroXplorer:371 - Change Database Path : 
+2019-07-17 18:32:02,726 [INFO] MicroXplorer:401 - Change Database Version : DB.5.0.30
+2019-07-17 18:32:02,729 [INFO] PinOutPanel:1367 - setPackage(No Configuration,No Configuration)
+2019-07-17 18:32:02,730 [INFO] UtilMem:74 - Begin LoadConfig() Used Memory: 199969536 Bytes (281018368)
+2019-07-17 18:32:02,734 [INFO] MicroXplorer:371 - Change Database Path : C:/Users/Afonso Muralha/.stm32cubemx/databases/DB.5.0.20/db/
+2019-07-17 18:32:02,734 [INFO] MicroXplorer:401 - Change Database Version : DB.5.0.20
+2019-07-17 18:32:11,306 [INFO] MicroXplorer:371 - Change Database Path : 
+2019-07-17 18:32:11,307 [INFO] MicroXplorer:401 - Change Database Version : DB.5.0.30
+2019-07-17 18:32:11,307 [INFO] OpenFileManager:269 - Change cursor
+2019-07-17 18:32:12,534 [INFO] Rule:205 - rule ADC Scan  fix with FW F7 is applicable
+2019-07-17 18:32:12,535 [INFO] Rule:205 - rule ADC Scan  fix with FW F7 is applicable
+2019-07-17 18:32:12,536 [INFO] DbConfProperties:222 - Apply Compatibility (0/2 Rules)
+2019-07-17 18:32:12,574 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Instance) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,574 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Direction) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,574 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphInc) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,575 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemInc) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,575 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphDataAlignment) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,575 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemDataAlignment) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,575 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Mode) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,576 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Priority) has Id (SPI1_TX) currently not set
+2019-07-17 18:32:12,576 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (RCC) : Parameter (ADCFreqValue) has invalid value (36000000)
+2019-07-17 18:32:12,576 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (RCC) : Invalid parameter (FamilyName)
+2019-07-17 18:32:12,576 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (RCC) : Parameter (MCOFreq_Value) has invalid value (72000000)
+2019-07-17 18:32:12,577 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (RCC) : Parameter (USBFreq_Value) has invalid value (72000000)
+2019-07-17 18:32:12,838 [INFO] UtilMem:74 - End LoadConfig() Used Memory: 200024816 Bytes (281018368)
+2019-07-17 18:32:12,844 [INFO] ThirdPartyDb:294 - Open Third Party DataBase File (C:/Users/Afonso Muralha/.stm32cubemx/plugins/thirdparty/db/thirdparties_db.xml) : 1 ms. number of Sw pack : 5
+2019-07-17 18:32:12,897 [INFO] ThirdParty:912 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 4.4.0
+2019-07-17 18:32:12,897 [INFO] ThirdParty:912 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 6.2.0
+2019-07-17 18:32:12,897 [INFO] ThirdParty:912 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 1.4.0
+2019-07-17 18:32:12,897 [INFO] ThirdParty:912 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-GNSS1 3.0.0
+2019-07-17 18:32:13,059 [INFO] PinOutPanel:1367 - setPackage(No Configuration,No Configuration)
+2019-07-17 18:32:13,061 [INFO] PinOutPanel:1367 - setPackage(STM32F103C8Tx,LQFP48)
+2019-07-17 18:32:13,506 [INFO] UtilMem:74 - Before build in PCC Used Memory: 185340000 Bytes (281018368)
+2019-07-17 18:32:13,860 [INFO] SharedServices:71 - Folder for power plug-in: C:/Users/Afonso Muralha/.stm32cubemx/plugins/power
+2019-07-17 18:32:13,861 [INFO] UtilMem:74 - After build in PCC Used Memory: 199493736 Bytes (281018368)
+2019-07-17 18:32:13,877 [INFO] BlockDiagram:1818 - stop enableDisableButtons
+2019-07-17 18:32:13,878 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,878 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,878 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,879 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,879 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,879 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,879 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,879 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,879 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,879 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,880 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,880 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,880 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,880 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,880 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,880 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,880 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,881 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,881 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,881 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,881 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,881 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,881 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,881 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,882 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,882 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,882 [INFO] IPUIPlugin:63 - create IPUIPlugin
+2019-07-17 18:32:13,894 [INFO] BlockDiagram:1818 - stop enableDisableButtons
+2019-07-17 18:32:13,906 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] toolchainItems.length=====1
+2019-07-17 18:32:13,910 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:13,911 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:13,983 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:13,984 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:13,986 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:13,987 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:13,989 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:13,990 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:13,997 [INFO] OpenFileManager:289 - Restore cursor
+2019-07-17 18:32:14,000 [INFO] DbMcusXml:106 - Load MCU database from C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\/mcu/families.xml
+2019-07-17 18:32:14,007 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,008 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,009 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,010 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:14,011 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:14,012 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,063 [INFO] BlockDiagram:1818 - stop enableDisableButtons
+2019-07-17 18:32:14,071 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,073 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,076 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,077 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:14,078 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:14,079 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:14,195 [INFO] BlockDiagram:1818 - stop enableDisableButtons
+2019-07-17 18:32:14,627 [INFO] DbMcusJson:87 - JSON generation date=Fri Jun 21 11:28:09 BST 2019 (1561112889)
+2019-07-17 18:32:16,189 [INFO] DbMcus:193 - Found 1496 MCUs (1455 are supported by CubeMX, 1455 are visible in CubeMX)
+2019-07-17 18:32:16,189 [INFO] ApiDb:147 - User favorites file not found: C:\Users\Afonso Muralha/.stm32cubemx/favorites.mcus.txt
+2019-07-17 18:32:16,190 [INFO] DbMcus:205 - Set 0 / 0 favorites MCUs
+2019-07-17 18:32:20,400 [INFO] BlockDiagram:1818 - stop enableDisableButtons
+2019-07-17 18:32:20,407 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:20,409 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:20,410 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:20,413 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:20,414 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:20,416 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:20,476 [INFO] BlockDiagram:1818 - stop enableDisableButtons
+2019-07-17 18:32:56,819 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 581242696 Bytes (760217600)
+2019-07-17 18:32:56,823 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:56,825 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:56,826 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:56,827 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:56,828 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isRootSelectionSupported
+2019-07-17 18:32:56,829 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============isUnderRootDefaultMode
+2019-07-17 18:32:57,258 [INFO] BlockDiagram:1862 - set Specific Code input for plugin: SPI
+2019-07-17 18:32:57,258 [INFO] BlockDiagram:1862 - set Specific Code input for plugin: NVIC
+2019-07-17 18:32:57,258 [INFO] BlockDiagram:1862 - set Specific Code input for plugin: DMA
+2019-07-17 18:32:57,258 [INFO] BlockDiagram:1862 - set Specific Code input for plugin: SYS
+2019-07-17 18:32:57,259 [INFO] BlockDiagram:1862 - set Specific Code input for plugin: RCC
+2019-07-17 18:32:57,260 [INFO] CodeGenerator:583 - code generatio: config db path: C:\ST\STM32CubeIDE_1.0.2\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.3.0.201907110903\\db\
+2019-07-17 18:32:57,699 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\license.tmp_save
+2019-07-17 18:32:58,016 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\license.tmp
+2019-07-17 18:32:58,119 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\gpio.tmp_save
+2019-07-17 18:32:58,223 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\gpio.tmp
+2019-07-17 18:32:58,297 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2019-07-17 18:32:58,298 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2019-07-17 18:32:58,298 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2019-07-17 18:32:58,311 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\dma.tmp_save
+2019-07-17 18:32:58,382 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\dma.tmp
+2019-07-17 18:32:58,390 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\dma_GV.tmp_save
+2019-07-17 18:32:58,464 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\dma_GV.tmp
+2019-07-17 18:32:58,466 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2019-07-17 18:32:58,467 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for SPI
+2019-07-17 18:32:58,468 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2019-07-17 18:32:58,469 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2019-07-17 18:32:58,470 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for SYS
+2019-07-17 18:32:58,471 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2019-07-17 18:32:58,473 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2019-07-17 18:32:58,473 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2019-07-17 18:32:58,480 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Src\stm32f1xx_it.c_save
+2019-07-17 18:32:58,767 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Src\stm32f1xx_it.c
+2019-07-17 18:32:58,776 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Inc\stm32f1xx_it.h_save
+2019-07-17 18:32:58,858 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Inc\stm32f1xx_it.h
+2019-07-17 18:32:58,868 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Src\stm32f1xx_hal_msp.c_save
+2019-07-17 18:32:59,011 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Src\stm32f1xx_hal_msp.c
+2019-07-17 18:32:59,019 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\system.tmp_save
+2019-07-17 18:32:59,093 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\MXTmpFiles\system.tmp
+2019-07-17 18:32:59,102 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Inc\stm32f1xx_hal_conf.h_save
+2019-07-17 18:32:59,177 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Inc\stm32f1xx_hal_conf.h
+2019-07-17 18:32:59,198 [WARN] IPConfigManager:2562 - IP not found : gpio
+2019-07-17 18:32:59,199 [WARN] CodeGenerator:2617 - IP not found : gpio
+2019-07-17 18:32:59,204 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Inc\main.h_save
+2019-07-17 18:32:59,281 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Inc\main.h
+2019-07-17 18:32:59,291 [INFO] CodeEngine:190 - oldGeneratedFile, F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Src\main.c_save
+2019-07-17 18:32:59,403 [INFO] CodeEngine:208 - Generated code: F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\Src\main.c
+2019-07-17 18:33:00,081 [INFO] ProjectBuilder:1570 - Time for Copy HAL[1] : 91mS.
+2019-07-17 18:33:00,087 [INFO] ProjectBuilder:2138 - Project Generator version: 3.4.0
+2019-07-17 18:33:00,316 [INFO] ConfigFileManager:879 - The Die is : DIE410
+2019-07-17 18:33:00,319 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] configName ==Arm Cortex-M3
+2019-07-17 18:33:00,424 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] memory ==name="RAM" access="xrw" start="0x20000000" size="20"
+2019-07-17 18:33:00,425 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] memory ==name="FLASH" access="rx" start="0x8000000" size="64"
+2019-07-17 18:33:00,545 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] namefile= STM32CubeIDE
+2019-07-17 18:33:00,546 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] method name===============generate
+2019-07-17 18:33:12,922 [INFO] ProjectBuilder:2232 - Time for Generating toolchain IDE Files: 12835mS.
+2019-07-17 18:33:12,924 [INFO] ProjectBuilder:1461 - Time for Copy CMSIS : 1mS.
+2019-07-17 18:33:12,925 [INFO] ProjectBuilder:1461 - Time for Copy CMSIS : 0mS.

@@ -2,7 +2,7 @@ core.c:82:13:LCD_pinsInit	4	static
 core.c:126:6:SPI_SendCmd	16	static
 core.c:134:6:SPI_SendCmd8	16	static
 core.c:138:6:SPI_SendCmd16	16	static
-core.c:146:6:SPI_Receive8	64	static
+core.c:146:6:SPI_Receive8	24	static
 core.c:154:6:SPIFill16	24	static
 core.c:172:6:LCD_reset	8	static
 core.c:178:6:LCD_exitStandby	4	static

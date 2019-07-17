@@ -20,7 +20,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "../Lib/ILI9341/config.h"
+#include "../Lib/ILI9341/core.h"
+#include "../Lib/ILI9341/control.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -89,7 +90,7 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
-  uint8_t rxbuf[10];
+  uint8_t rxbuf[5];
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
@@ -98,21 +99,24 @@ int main(void)
   HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
   HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
 
- LCD_init();
+  LCD_init();
   HAL_Delay(5);
   SPI_SendCmd(0x04);
   SPI_Receive8(&rxbuf, 5);
 
 
-  SPI_SendCmd(0x29); //DISPLAY ON
-  SPI_SendCmd(0x38); //IDLE MODE OFF
-  SPI_SendCmd(0x21); //INVERT DISPLAY
+  //SPI_SendCmd(0x29); //DISPLAY ON
+  //SPI_SendCmd(0x38); //IDLE MODE OFF
+  //SPI_SendCmd(0x21); //INVERT DISPLAY
 
   SPI_SendCmd(0x52); //READ BRIGHTNESS
   SPI_Receive8(rxbuf, 2);
 
+  HAL_GPIO_WritePin(TFT_CD_GPIO_Port, TFT_CD_Pin, RESET);
   SPI_SendCmd(0x51); //SET BRIGHTNESS
-  SPI_SendCmd(0x00);  // TO 00
+  HAL_GPIO_WritePin(TFT_CD_GPIO_Port, TFT_CD_Pin, SET);
+  SPI_SendCmd(0x0F);  // TO 00
+  HAL_GPIO_WritePin(TFT_CD_GPIO_Port, TFT_CD_Pin, RESET);
 
   SPI_SendCmd(0x52); //READ BRIGHTNESS
   SPI_Receive8(rxbuf, 2);
@@ -152,13 +156,6 @@ int main(void)
 
   }
   /* USER CODE END 3 */
-}
-
-int _write(int file, char *ptr, int len) {
-  /* Implement your write code here, this is used by puts and printf for example */
-  for (int i = 0; i < len; i++)
-    ITM_SendChar((*ptr++));
-  return len;
 }
 
 /**
@@ -242,6 +239,7 @@ static void MX_SPI1_Init(void)
   */
 static void MX_DMA_Init(void) 
 {
+
   /* DMA controller clock enable */
   __HAL_RCC_DMA1_CLK_ENABLE();
 
@@ -266,10 +264,13 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin 
+                          |TFT_CD_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : TestPin_Pin LEDPIN_Pin TFT_CS_Pin TFT_RESET_PIN_Pin */
-  GPIO_InitStruct.Pin = TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin;
+  /*Configure GPIO pins : TestPin_Pin LEDPIN_Pin TFT_CS_Pin TFT_RESET_PIN_Pin 
+                           TFT_CD_Pin */
+  GPIO_InitStruct.Pin = TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin 
+                          |TFT_CD_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

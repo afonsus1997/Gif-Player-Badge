@@ -1,46 +1,32 @@
-02:17:49 **** Incremental Build of configuration Debug for project Gif-Player-Badge ****
-make -k -j4 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+19:27:34 **** Incremental Build of configuration Debug for project Gif-Player-Badge ****
+make -j4 all 
 arm-none-eabi-gcc "../Lib/ILI9341/core.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Lib/ILI9341/core.d" -MT"Lib/ILI9341/core.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Lib/ILI9341/core.o"
-../Src/main.c: In function 'main':
-../Src/main.c:101:2: warning: implicit declaration of function 'LCD_init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
-  LCD_init();
-  ^~~~~~~~
-  HAL_Init
 ../Lib/ILI9341/core.c: In function 'SPI_SendCmd':
 ../Lib/ILI9341/core.c:129:27: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
   HAL_SPI_Transmit(&hspi1, &cmd, 1, 0xFFFFFFFFU);
                            ^
-In file included from ../Inc/stm32f1xx_hal_conf.h:311:0,
-                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:46,
+In file included from ../Inc/stm32f1xx_hal_conf.h:330:0,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
                  from ../Inc/main.h:31,
                  from ../Lib/ILI9341/control.h:8,
                  from ../Lib/ILI9341/core.h:10,
                  from ../Lib/ILI9341/core.c:1:
-../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:437:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'uint8_t ** {aka unsigned char **}'
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:667:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'uint8_t ** {aka unsigned char **}'
  HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
                    ^~~~~~~~~~~~~~~~
-../Src/main.c:103:3: warning: implicit declaration of function 'SPI_SendCmd'; did you mean 'ITM_SendChar'? [-Wimplicit-function-declaration]
-   SPI_SendCmd(0x04);
-   ^~~~~~~~~~~
-   ITM_SendChar
 ../Lib/ILI9341/core.c: In function 'SPI_SendCmd16':
 ../Lib/ILI9341/core.c:141:27: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
   HAL_SPI_Transmit(&hspi1, &cmd, n, 0xFFFFFFFFU);
                            ^
-In file included from ../Inc/stm32f1xx_hal_conf.h:311:0,
-                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:46,
+In file included from ../Inc/stm32f1xx_hal_conf.h:330:0,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
                  from ../Inc/main.h:31,
                  from ../Lib/ILI9341/control.h:8,
                  from ../Lib/ILI9341/core.h:10,
                  from ../Lib/ILI9341/core.c:1:
-../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:437:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'uint16_t * {aka short unsigned int *}'
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:667:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'uint16_t * {aka short unsigned int *}'
  HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
                    ^~~~~~~~~~~~~~~~
-../Lib/ILI9341/core.c: In function 'SPI_Receive8':
-../Lib/ILI9341/core.c:147:12: warning: unused variable 'pDataRx' [-Wunused-variable]
-  uint8_t * pDataRx[10];
-            ^~~~~~~
 In file included from ../Lib/ILI9341/core.h:7:0,
                  from ../Lib/ILI9341/core.c:1:
 ../Lib/ILI9341/core.c: In function 'SPIFill16':
@@ -50,10 +36,6 @@ In file included from ../Lib/ILI9341/core.h:7:0,
 ../Lib/ILI9341/core.c:156:17: note: in expansion of macro 'LCD_GRAM'
      SPI_SendCmd(LCD_GRAM);
                  ^~~~~~~~
-../Src/main.c:104:3: warning: implicit declaration of function 'SPI_Receive8'; did you mean 'HAL_SPI_Receive'? [-Wimplicit-function-declaration]
-   SPI_Receive8(&rxbuf, 5);
-   ^~~~~~~~~~~~
-   HAL_SPI_Receive
 ../Lib/ILI9341/core.c:126:6: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int'
  void SPI_SendCmd(uint8_t * cmd){
       ^~~~~~~~~~~
@@ -127,17 +109,17 @@ At top level:
 ../Lib/ILI9341/core.c:50:22: warning: 'init_commands2' defined but not used [-Wunused-const-variable=]
  static const uint8_t init_commands2[] = {
                       ^~~~~~~~~~~~~~
-arm-none-eabi-g++ -o "Gif-Player-Badge.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\Afonso Muralha\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gif-Player-Badge.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+arm-none-eabi-g++ -o "Gif-Player-Badge.elf" @"objects.list"   -mcpu=cortex-m3 -T"F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gif-Player-Badge.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: Gif-Player-Badge.elf
  
 arm-none-eabi-objdump -h -S  Gif-Player-Badge.elf  > "Gif-Player-Badge.list"
 arm-none-eabi-size   Gif-Player-Badge.elf 
    text	   data	    bss	    dec	    hex	filename
-   8280	     24	   1728	  10032	   2730	Gif-Player-Badge.elf
+   8272	     24	   1728	  10024	   2728	Gif-Player-Badge.elf
 Finished building: default.size.stdout
  
 Finished building: Gif-Player-Badge.list
  
 
-02:17:52 Build Finished. 0 errors, 17 warnings. (took 3s.145ms)
+19:27:35 Build Finished. 0 errors, 13 warnings. (took 1s.844ms)
 

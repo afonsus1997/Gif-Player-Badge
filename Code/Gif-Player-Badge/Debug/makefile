@@ -54,8 +54,8 @@ Gif-Player-Badge.list \
 all: Gif-Player-Badge.elf secondary-outputs
 
 # Tool invocations
-Gif-Player-Badge.elf: $(OBJS) $(USER_OBJS) C:\Users\Afonso\ Muralha\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld
-	arm-none-eabi-g++ -o "Gif-Player-Badge.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Afonso Muralha\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gif-Player-Badge.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Gif-Player-Badge.elf: $(OBJS) $(USER_OBJS) F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld
+	arm-none-eabi-g++ -o "Gif-Player-Badge.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gif-Player-Badge.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

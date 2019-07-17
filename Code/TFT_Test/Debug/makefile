@@ -52,8 +52,8 @@ TFT_Test.list \
 all: TFT_Test.elf secondary-outputs
 
 # Tool invocations
-TFT_Test.elf: $(OBJS) $(USER_OBJS) C:\Users\Afonso\ Muralha\Documents\GitHub\Gif-Player-Badge\Code\TFT_Test\STM32F103C8TX_FLASH.ld
-	arm-none-eabi-g++ -o "TFT_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Afonso Muralha\Documents\GitHub\Gif-Player-Badge\Code\TFT_Test\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TFT_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+TFT_Test.elf: $(OBJS) $(USER_OBJS) F:\Documents\GitHub\Gif-Player-Badge\Code\TFT_Test\STM32F103C8TX_FLASH.ld
+	arm-none-eabi-g++ -o "TFT_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"F:\Documents\GitHub\Gif-Player-Badge\Code\TFT_Test\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TFT_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
