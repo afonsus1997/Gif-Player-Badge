@@ -1,0 +1,10 @@
+14:49:38 **** Incremental Build of configuration Debug for project TFT_Test ****
+make -j4 all 
+arm-none-eabi-size   TFT_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6168	     20	   1660	   7848	   1ea8	TFT_Test.elf
+Finished building: default.size.stdout
+ 
+
+14:49:40 Build Finished. 0 errors, 0 warnings. (took 1s.519ms)
+

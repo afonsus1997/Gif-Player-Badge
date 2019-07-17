@@ -1,0 +1,9 @@
+text.c:15:20:LCD_drawChar	80	dynamic
+text.c:69:13:LCD_write	32	static
+text.c:85:6:LCD_writeString	16	static
+text.c:89:6:LCD_setCursor	16	static
+text.c:94:6:LCD_setTextSize	16	static
+text.c:98:6:LCD_setTextColor	16	static
+text.c:102:6:LCD_setTextBgColor	16	static
+text.c:106:10:LCD_getCursorX	4	static
+text.c:110:10:LCD_getCursorY	4	static

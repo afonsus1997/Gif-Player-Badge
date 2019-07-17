@@ -60,6 +60,14 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define TestPin_Pin GPIO_PIN_0
 #define TestPin_GPIO_Port GPIOA
+#define LEDPIN_Pin GPIO_PIN_1
+#define LEDPIN_GPIO_Port GPIOA
+#define TFT_CS_Pin GPIO_PIN_2
+#define TFT_CS_GPIO_Port GPIOA
+#define TFT_RESET_PIN_Pin GPIO_PIN_3
+#define TFT_RESET_PIN_GPIO_Port GPIOA
+#define SWITCHPIN_Pin GPIO_PIN_8
+#define SWITCHPIN_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

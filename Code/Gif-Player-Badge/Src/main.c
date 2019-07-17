@@ -20,7 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "../Lib/ILI9341/config.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -43,6 +43,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
+DMA_HandleTypeDef hdma_spi1_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -51,6 +52,7 @@ SPI_HandleTypeDef hspi1;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -87,23 +89,76 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
-
+  uint8_t rxbuf[10];
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
+  HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
 
+ LCD_init();
+  HAL_Delay(5);
+  SPI_SendCmd(0x04);
+  SPI_Receive8(&rxbuf, 5);
+
+
+  SPI_SendCmd(0x29); //DISPLAY ON
+  SPI_SendCmd(0x38); //IDLE MODE OFF
+  SPI_SendCmd(0x21); //INVERT DISPLAY
+
+  SPI_SendCmd(0x52); //READ BRIGHTNESS
+  SPI_Receive8(rxbuf, 2);
+
+  SPI_SendCmd(0x51); //SET BRIGHTNESS
+  SPI_SendCmd(0x00);  // TO 00
+
+  SPI_SendCmd(0x52); //READ BRIGHTNESS
+  SPI_Receive8(rxbuf, 2);
+
+
+
+  //LCD_setOrientation(0x28);
+  //LCD_fillScreen(DGREEN);
+  //uint8_t buf[2] = {0x01, 0x02};
+  //LCD_readPixels(0, 0, 0, 0, buf);
+  //LCD_readPixels(0, 0, 0, 0, buf);
+  //LCD_readPixels(0, 0, 0, 0, buf);
+  //SPI_SendCmd(0x20);
+  //SPI_SendCmd(0x21);
+
+  //LCD_fillScreen(BLACK);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
+  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
+
+
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
+	  //HAL_Delay(500);
+	  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
+	  //SPI_SendCmd(0x6);
+	  //HAL_Delay(1);
+
+
   }
   /* USER CODE END 3 */
+}
+
+int _write(int file, char *ptr, int len) {
+  /* Implement your write code here, this is used by puts and printf for example */
+  for (int i = 0; i < len; i++)
+    ITM_SendChar((*ptr++));
+  return len;
 }
 
 /**
@@ -161,6 +216,7 @@ static void MX_SPI1_Init(void)
   /* SPI1 parameter configuration*/
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
+  //hspi1.Init.Direction = SPI_DIRECTION_1LINE;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
@@ -181,6 +237,21 @@ static void MX_SPI1_Init(void)
 
 }
 
+/** 
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void) 
+{
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel3_IRQn);
+
+}
+
 /**
   * @brief GPIO Initialization Function
   * @param None
@@ -195,14 +266,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(TestPin_GPIO_Port, TestPin_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : TestPin_Pin */
-  GPIO_InitStruct.Pin = TestPin_Pin;
+  /*Configure GPIO pins : TestPin_Pin LEDPIN_Pin TFT_CS_Pin TFT_RESET_PIN_Pin */
+  GPIO_InitStruct.Pin = TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(TestPin_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SWITCHPIN_Pin */
+  GPIO_InitStruct.Pin = SWITCHPIN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(SWITCHPIN_GPIO_Port, &GPIO_InitStruct);
 
 }
 
