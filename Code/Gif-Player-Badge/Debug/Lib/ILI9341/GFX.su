@@ -1,0 +1,3 @@
+GFX.c:9:6:LCD_Draw_Char	48	static
+GFX.c:48:6:LCD_Draw_Text	32	static
+GFX.c:57:6:LCD_Draw_Bitmap	5064	static

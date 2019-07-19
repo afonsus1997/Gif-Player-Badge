@@ -9,13 +9,6 @@
 #include "dma.h"
 #include "control.h"
 #include <stdint.h>
-#define LCD_setAddressWindowToWrite(x1,y1,x2,y2) \
-    LCD_setAddressWindow(x1, y1, x2, y2); \
-    //dmaSendCmd(LCD_GRAM)
-
-#define LCD_setAddressWindowToRead(x1,y1,x2,y2) \
-    LCD_setAddressWindow(x1, y1, x2, y2); \
-    ///dmaSendCmd(LCD_RAMRD)
 
 uint16_t LCD_getWidth();
 uint16_t LCD_getHeight();

@@ -91,6 +91,29 @@
 #define LCD_3GAMMA_EN           0xF2   /* 3 Gamma enable register */
 #define LCD_PRC                 0xF7   /* Pump ratio control register */
 
+
+#define LCD_BLACK       0x0000  ///<   0,   0,   0
+#define LCD_NAVY        0x000F  ///<   0,   0, 123
+#define LCD_DARKGREEN   0x03E0  ///<   0, 125,   0
+#define LCD_DARKCYAN    0x03EF  ///<   0, 125, 123
+#define LCD_MAROON      0x7800  ///< 123,   0,   0
+#define LCD_PURPLE      0x780F  ///< 123,   0, 123
+#define LCD_OLIVE       0x7BE0  ///< 123, 125,   0
+#define LCD_LIGHTGREY   0xC618  ///< 198, 195, 198
+#define LCD_DARKGREY    0x7BEF  ///< 123, 125, 123
+#define LCD_BLUE        0x001F  ///<   0,   0, 255
+#define LCD_GREEN       0x07E0  ///<   0, 255,   0
+#define LCD_CYAN        0x07FF  ///<   0, 255, 255
+#define LCD_RED         0xF800  ///< 255,   0,   0
+#define LCD_MAGENTA     0xF81F  ///< 255,   0, 255
+#define LCD_YELLOW      0xFFE0  ///< 255, 255,   0
+#define LCD_WHITE       0xFFFF  ///< 255, 255, 255
+#define LCD_ORANGE      0xFD20  ///< 255, 165,   0
+#define LCD_GREENYELLOW 0xAFE5  ///< 173, 255,  41
+#define LCD_PINK        0xFC18  ///< 255, 130, 198
+
+
+
 //</editor-fold>
 
 //<editor-fold desc="Orientation">
@@ -100,11 +123,17 @@
 #define ORIENTATION_PORTRAIT_MIRROR 0x88
 #define ORIENTATION_LANDSCAPE_MIRROR 0xE8
 
+#define SCREEN_VERTICAL_1		0
+#define SCREEN_HORIZONTAL_1		1
+#define SCREEN_VERTICAL_2		2
+#define SCREEN_HORIZONTAL_2		3
+
 //</editor-fold>
+#define BURST_MAX_SIZE 	5000//20000//500
 
 //<editor-fold desc="Dimensions">
-#define LCD_PIXEL_WIDTH       240
-#define LCD_PIXEL_HEIGHT      320
+#define LCD_SCREEN_WIDTH       240
+#define LCD_SCREEN_HEIGHT      320
 #define LCD_PIXEL_COUNT    LCD_PIXEL_WIDTH * LCD_PIXEL_HEIGHT
 //</editor-fold>
 

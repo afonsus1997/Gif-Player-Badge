@@ -1,166 +1,466 @@
 #include "core.h"
 
-static uint16_t screen_width  = LCD_PIXEL_WIDTH,
-    screen_height = LCD_PIXEL_HEIGHT;
+volatile uint16_t LCD_HEIGHT = LCD_SCREEN_HEIGHT;
+volatile uint16_t LCD_WIDTH	 = LCD_SCREEN_WIDTH;
 
 //<editor-fold desc="Init commands">
 SPI_HandleTypeDef hspi1;
-
-
-static const uint8_t init_commands[] = {
-        // Power control A
-        6, LCD_POWERA, 0x39, 0x2C, 0x00, 0x34, 0x02,
-        // Power control B
-        4, LCD_POWERB, 0x00, 0xC1, 0x30,
-        // Driver timing control A
-        4, LCD_DTCA, 0x85, 0x00, 0x78,
-        // Driver timing control B
-        3, LCD_DTCB, 0x00, 0x00,
-        // Power on sequence control
-        5, LCD_POWER_SEQ, 0x64, 0x03, 0x12, 0x81,
-        // Pump ratio control
-        2, LCD_PRC, 0x20,
-        // Power control 1
-        2, LCD_POWER1, 0x23,
-        // Power control 2
-        2, LCD_POWER2, 0x10,
-        // VCOM control 1
-        3, LCD_VCOM1, 0x3E, 0x28,
-        // VCOM cotnrol 2
-        2, LCD_VCOM2, 0x86,
-        // Memory access control
-        2, LCD_MAC, 0x48,
-        // Pixel format set
-        2, LCD_PIXEL_FORMAT, 0x55,
-        // Frame rate control
-        3, LCD_FRMCTR1, 0x00, 0x18,
-        // Display function control
-        4, LCD_DFC, 0x08, 0x82, 0x27,
-        // 3Gamma function disable
-        2, LCD_3GAMMA_EN, 0x00,
-        // Gamma curve selected
-        2, LCD_GAMMA, 0x01,
-        // Set positive gamma
-        16, LCD_PGAMMA, 0x0F, 0x31, 0x2B, 0x0C, 0x0E, 0x08, 0x4E, 0xF1, 0x37, 0x07, 0x10, 0x03, 0x0E, 0x09, 0x00,
-        16, LCD_NGAMMA, 0x00, 0x0E, 0x14, 0x03, 0x11, 0x07, 0x31, 0xC1, 0x48, 0x08, 0x0F, 0x0C, 0x31, 0x36, 0x0F,
-        0
-};
-
-
-static const uint8_t init_commands2[] = {
-  0xEF, 3, 0x03, 0x80, 0x02,
-  0xCF, 3, 0x00, 0xC1, 0x30,
-  0xED, 4, 0x64, 0x03, 0x12, 0x81,
-  0xE8, 3, 0x85, 0x00, 0x78,
-  0xCB, 5, 0x39, 0x2C, 0x00, 0x34, 0x02,
-  0xF7, 1, 0x20,
-  0xEA, 2, 0x00, 0x00,
-  ILI9341_PWCTR1  , 1, 0x23,             // Power control VRH[5:0]
-  ILI9341_PWCTR2  , 1, 0x10,             // Power control SAP[2:0];BT[3:0]
-  ILI9341_VMCTR1  , 2, 0x3e, 0x28,       // VCM control
-  ILI9341_VMCTR2  , 1, 0x86,             // VCM control2
-  ILI9341_MADCTL  , 1, 0x48,             // Memory Access Control
-  ILI9341_VSCRSADD, 1, 0x00,             // Vertical scroll zero
-  ILI9341_PIXFMT  , 1, 0x55,
-  ILI9341_FRMCTR1 , 2, 0x00, 0x18,
-  ILI9341_DFUNCTR , 3, 0x08, 0x82, 0x27, // Display Function Control
-  0xF2, 1, 0x00,                         // 3Gamma Function Disable
-  ILI9341_GAMMASET , 1, 0x01,             // Gamma curve selected
-  ILI9341_GMCTRP1 , 15, 0x0F, 0x31, 0x2B, 0x0C, 0x0E, 0x08, // Set Gamma
-    0x4E, 0xF1, 0x37, 0x07, 0x10, 0x03, 0x0E, 0x09, 0x00,
-  ILI9341_GMCTRN1 , 15, 0x00, 0x0E, 0x14, 0x03, 0x11, 0x07, // Set Gamma
-    0x31, 0xC1, 0x48, 0x08, 0x0F, 0x0C, 0x31, 0x36, 0x0F,
-  ILI9341_SLPOUT  , 0x80,                // Exit Sleep
-  ILI9341_DISPON  , 0x80,                // Display on
-  0x00                                   // End of list
-};
 
 //</editor-fold>
 
 //<editor-fold desc="LCD initialization functions">
 
-static void LCD_pinsInit() {
-	//NOT NEEDED
-    /*SPI_InitTypeDef  spiStructure;
-    GPIO_InitTypeDef gpioStructure;
-
-    RCC_PCLK2Config(RCC_HCLK_Div2);
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-    RCC_APB2PeriphClockCmd(RCC_APB2ENR_AFIOEN, ENABLE);
-    RCC_APB2PeriphClockCmd(SPI_MASTER_GPIO_CLK | SPI_MASTER_CLK, ENABLE);
-
-    // GPIO speed by default
-    gpioStructure.GPIO_Speed = GPIO_Speed_50MHz;
-
-    // GPIO for CS/DC/LED/RESET
-    gpioStructure.GPIO_Pin  = TFT_CS_PIN | TFT_DC_PIN | TFT_RESET_PIN | TFT_LED_PIN;
-    gpioStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_Init(GPIOA, &gpioStructure);
-
-    // GPIO for SPI
-    gpioStructure.GPIO_Pin  = SPI_MASTER_PIN_SCK | SPI_MASTER_PIN_MOSI;
-    gpioStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_Init(SPI_MASTER_GPIO, &gpioStructure);
-
-    // GPIO for SPI
-    gpioStructure.GPIO_Pin  = SPI_MASTER_PIN_MISO;
-    gpioStructure.GPIO_Mode = GPIO_Mode_IPD;
-    GPIO_Init(SPI_MASTER_GPIO, &gpioStructure);
-
-    SPI_StructInit(&spiStructure);
-    spiStructure.SPI_Mode              = SPI_Mode_Master;
-    spiStructure.SPI_NSS               = SPI_NSS_Soft;
-    spiStructure.SPI_CPOL              = SPI_CPOL_High;
-    spiStructure.SPI_CPHA              = SPI_CPHA_2Edge;
-    spiStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
-    SPI_Init(SPI_MASTER, &spiStructure);
-
-    SPI_Cmd(SPI_MASTER, ENABLE);*/
-
-
-
-
-
+static void LCD_Reset(){
+	//Toggles LCD Reset pin
+	HAL_GPIO_WritePin(TFT_RST_GPIO_Port, TFT_RST_Pin, RESET); //Toggle Reset Pin
+	HAL_Delay(10);
+	HAL_GPIO_WritePin(TFT_RST_GPIO_Port, TFT_RST_Pin, SET);   //----------------
 }
 
-void SPI_SendCmd(uint8_t * cmd){
-	//TFT_CS_SET;
-	//TFT_CS_RESET;
+static void LCD_WriteChipSelect(uint8_t State){
+	//Sets Chip Select for the LCD
+	HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, State);
+}
+
+static void LCD_SetWriteMode(uint8_t State){
+	//Writes to D/C (data/command) LCD pin
+	HAL_GPIO_WritePin(TFT_CD_GPIO_Port, TFT_CD_Pin, State);
+}
+
+static void LCD_PinsInit() {
+	LCD_Reset();
+
+	LCD_WriteChipSelect(SET); //Toggle Chip Select
+	LCD_WriteChipSelect(RESET);
+}
+
+void SPI_Send(uint8_t * cmd){
 	HAL_SPI_Transmit(&hspi1, &cmd, 1, 0xFFFFFFFFU);
-
-	//TFT_CS_SET;
 }
 
-void SPI_SendCmd8(uint8_t cmd, uint8_t n){
-	HAL_SPI_Transmit(&hspi1, &cmd, n, 0xFFFFFFFFU);
+void SPI_WriteCmd(uint8_t * cmd){
+	LCD_SetWriteMode(RESET);
+	HAL_SPI_Transmit(&hspi1, &cmd, 1, 0xFFFFFFFFU);
 }
 
-void SPI_SendCmd16(uint16_t cmd, uint8_t n){
-	//TFT_CS_SET;
-	//TFT_CS_RESET;
-	HAL_SPI_Transmit(&hspi1, &cmd, n, 0xFFFFFFFFU);
-
-	//TFT_CS_SET;
+void SPI_WriteCmdData(uint8_t * cmd){
+	LCD_SetWriteMode(SET);
+	HAL_SPI_Transmit(&hspi1, &cmd, 1, 0xFFFFFFFFU);
 }
+
+void LCD_Set_Address(uint16_t X1, uint16_t Y1, uint16_t X2, uint16_t Y2)
+{
+	SPI_WriteCmd(0x2A);
+	SPI_WriteCmdData(X1>>8);
+	SPI_WriteCmdData(X1);
+	SPI_WriteCmdData(X2>>8);
+	SPI_WriteCmdData(X2);
+
+	SPI_WriteCmd(0x2B);
+	SPI_WriteCmdData(Y1>>8);
+	SPI_WriteCmdData(Y1);
+	SPI_WriteCmdData(Y2>>8);
+	SPI_WriteCmdData(Y2);
+
+	SPI_WriteCmd(0x2C);
+}
+
+void LCD_Set_Rotation(uint8_t Rotation)
+{
+
+uint8_t screen_rotation = Rotation;
+
+	SPI_WriteCmd(0x36);
+	HAL_Delay(1);
+
+	switch(screen_rotation)
+		{
+			case SCREEN_VERTICAL_1:
+				SPI_WriteCmdData(0x40|0x08);
+				LCD_WIDTH = 240;
+				LCD_HEIGHT = 320;
+				break;
+			case SCREEN_HORIZONTAL_1:
+				SPI_WriteCmdData(0x20|0x08);
+				LCD_WIDTH  = 320;
+				LCD_HEIGHT = 240;
+				break;
+			case SCREEN_VERTICAL_2:
+				SPI_WriteCmdData(0x80|0x08);
+				LCD_WIDTH  = 240;
+				LCD_HEIGHT = 320;
+				break;
+			case SCREEN_HORIZONTAL_2:
+				SPI_WriteCmdData(0x40|0x80|0x20|0x08);
+				LCD_WIDTH  = 320;
+				LCD_HEIGHT = 240;
+				break;
+			default:
+				//EXIT IF SCREEN ROTATION NOT VALID!
+				break;
+		}
+}
+
+
+void LCD_init() {
+    LCD_PinsInit();
+    LCD_Reset();
+    LCD_configure();
+}
+
+void LCD_configure() {
+
+	//SOFTWARE RESET
+	SPI_WriteCmd(0x01);
+	HAL_Delay(1000);
+
+	//POWER CONTROL A
+	SPI_WriteCmd(0xCB);
+	SPI_WriteCmdData(0x39);
+	SPI_WriteCmdData(0x2C);
+	SPI_WriteCmdData(0x00);
+	SPI_WriteCmdData(0x34);
+	SPI_WriteCmdData(0x02);
+
+	//POWER CONTROL B
+	SPI_WriteCmd(0xCF);
+	SPI_WriteCmdData(0x00);
+	SPI_WriteCmdData(0xC1);
+	SPI_WriteCmdData(0x30);
+
+	//DRIVER TIMING CONTROL A
+	SPI_WriteCmd(0xE8);
+	SPI_WriteCmdData(0x85);
+	SPI_WriteCmdData(0x00);
+	SPI_WriteCmdData(0x78);
+
+	//DRIVER TIMING CONTROL B
+	SPI_WriteCmd(0xEA);
+	SPI_WriteCmdData(0x00);
+	SPI_WriteCmdData(0x00);
+
+	//POWER ON SEQUENCE CONTROL
+	SPI_WriteCmd(0xED);
+	SPI_WriteCmdData(0x64);
+	SPI_WriteCmdData(0x03);
+	SPI_WriteCmdData(0x12);
+	SPI_WriteCmdData(0x81);
+
+	//PUMP RATIO CONTROL
+	SPI_WriteCmd(0xF7);
+	SPI_WriteCmdData(0x20);
+
+	//POWER CONTROL,VRH[5:0]
+	SPI_WriteCmd(0xC0);
+	SPI_WriteCmdData(0x23);
+
+	//POWER CONTROL,SAP[2:0];BT[3:0]
+	SPI_WriteCmd(0xC1);
+	SPI_WriteCmdData(0x10);
+
+	//VCM CONTROL
+	SPI_WriteCmd(0xC5);
+	SPI_WriteCmdData(0x3E);
+	SPI_WriteCmdData(0x28);
+
+	//VCM CONTROL 2
+	SPI_WriteCmd(0xC7);
+	SPI_WriteCmdData(0x86);
+
+	//MEMORY ACCESS CONTROL
+	SPI_WriteCmd(0x36);
+	SPI_WriteCmdData(0x48);
+
+	//PIXEL FORMAT
+	SPI_WriteCmd(0x3A);
+	SPI_WriteCmdData(0x55);
+
+	//FRAME RATIO CONTROL, STANDARD RGB COLOR
+	SPI_WriteCmd(0xB1);
+	SPI_WriteCmdData(0x00);
+	SPI_WriteCmdData(0x18);
+
+	//DISPLAY FUNCTION CONTROL
+	SPI_WriteCmd(0xB6);
+	SPI_WriteCmdData(0x08);
+	SPI_WriteCmdData(0x82);
+	SPI_WriteCmdData(0x27);
+
+	//3GAMMA FUNCTION DISABLE
+	SPI_WriteCmd(0xF2);
+	SPI_WriteCmdData(0x00);
+
+	//GAMMA CURVE SELECTED
+	SPI_WriteCmd(0x26);
+	SPI_WriteCmdData(0x01);
+
+	//POSITIVE GAMMA CORRECTION
+	SPI_WriteCmd(0xE0);
+	SPI_WriteCmdData(0x0F);
+	SPI_WriteCmdData(0x31);
+	SPI_WriteCmdData(0x2B);
+	SPI_WriteCmdData(0x0C);
+	SPI_WriteCmdData(0x0E);
+	SPI_WriteCmdData(0x08);
+	SPI_WriteCmdData(0x4E);
+	SPI_WriteCmdData(0xF1);
+	SPI_WriteCmdData(0x37);
+	SPI_WriteCmdData(0x07);
+	SPI_WriteCmdData(0x10);
+	SPI_WriteCmdData(0x03);
+	SPI_WriteCmdData(0x0E);
+	SPI_WriteCmdData(0x09);
+	SPI_WriteCmdData(0x00);
+
+	//NEGATIVE GAMMA CORRECTION
+	SPI_WriteCmd(0xE1);
+	SPI_WriteCmdData(0x00);
+	SPI_WriteCmdData(0x0E);
+	SPI_WriteCmdData(0x14);
+	SPI_WriteCmdData(0x03);
+	SPI_WriteCmdData(0x11);
+	SPI_WriteCmdData(0x07);
+	SPI_WriteCmdData(0x31);
+	SPI_WriteCmdData(0xC1);
+	SPI_WriteCmdData(0x48);
+	SPI_WriteCmdData(0x08);
+	SPI_WriteCmdData(0x0F);
+	SPI_WriteCmdData(0x0C);
+	SPI_WriteCmdData(0x31);
+	SPI_WriteCmdData(0x36);
+	SPI_WriteCmdData(0x0F);
+
+	//EXIT SLEEP
+	SPI_WriteCmd(0x11);
+	HAL_Delay(120);
+
+	//TURN ON DISPLAY
+	SPI_WriteCmd(0x29);
+
+	//STARTING ROTATION
+	//LCD_Set_Rotation(SCREEN_VERTICAL_1);
+	//LCD_Set_Rotation(SCREEN_VERTICAL_2);
+	LCD_Set_Rotation(SCREEN_HORIZONTAL_1);
+
+}
+
+void ILI9341_Draw_Colour(uint16_t Colour)
+{
+	//SENDS COLOUR
+	unsigned char TempBuffer[2] = {Colour>>8, Colour};
+	LCD_SetWriteMode(SET);
+	HAL_SPI_Transmit(&hspi1, TempBuffer, 2, 1);
+}
+
+void LCD_Draw_Colour_Burst(uint16_t Colour, uint32_t Size)
+	{
+	//SENDS COLOUR
+	uint32_t Buffer_Size = 0;
+	if((Size<<1) < BURST_MAX_SIZE)
+	{
+		Buffer_Size = Size;
+	}
+	else
+	{
+		Buffer_Size = BURST_MAX_SIZE;
+	}
+
+	LCD_SetWriteMode(SET);
+
+	unsigned char chifted = 	Colour>>8;;
+	unsigned char burst_buffer[Buffer_Size];
+	for(uint32_t j = 0; j < Buffer_Size; j+=2)
+		{
+			burst_buffer[j] = 	chifted;
+			burst_buffer[j+1] = Colour;
+		}
+
+	uint32_t Sending_Size = Size<<1;
+	uint32_t Sending_in_Block = Sending_Size/Buffer_Size;
+	uint32_t Remainder_from_block = Sending_Size%Buffer_Size;
+
+	if(Sending_in_Block != 0)
+	{
+		for(uint32_t j = 0; j < (Sending_in_Block); j++)
+			{
+			HAL_SPI_Transmit(&hspi1, (unsigned char *)burst_buffer, Buffer_Size, 10);
+			}
+	}
+
+	//REMAINDER!
+	HAL_SPI_Transmit(&hspi1, (unsigned char *)burst_buffer, Remainder_from_block, 10);
+
+}
+
+
+void LCD_WriteFrameBufferTest(){
+	uint16_t buf[2] = {LCD_BLACK, LCD_WHITE};
+	LCD_Set_Address(0,0,LCD_WIDTH,LCD_HEIGHT);
+	LCD_SetWriteMode(SET);
+	int32_t i=0;
+	for (i = 0; i < 320*240*2; ++i) {
+		HAL_SPI_Transmit(&hspi1, &buf[1], 1, 9999);
+	}
+
+	LCD_Set_Address(0,0,LCD_WIDTH,LCD_HEIGHT);
+	HAL_Delay(100);
+	LCD_SetWriteMode(SET);
+	for (i = 0; i < 320*240*2; ++i) {
+			HAL_SPI_Transmit(&hspi1, &buf[0], 1, 9999);
+		}
+	HAL_Delay(100);
+
+
+
+
+}
+
+void LCD_Fill_Screen(uint16_t Colour)
+{
+	LCD_Set_Address(0,0,LCD_WIDTH,LCD_HEIGHT);
+	LCD_Draw_Colour_Burst(Colour, LCD_WIDTH*LCD_HEIGHT);
+}
+
+void LCD_Draw_Pixel(uint16_t X,uint16_t Y,uint16_t Colour)
+{
+	if((X >=LCD_WIDTH) || (Y >=LCD_HEIGHT)) return;	//OUT OF BOUNDS!
+
+	//ADDRESS
+	//LCD_SetWriteMode(RESET);
+	SPI_WriteCmd(0x2A);
+	LCD_SetWriteMode(SET);
+	//XDATA
+	unsigned char Temp_Buffer[4] = {X>>8,X, (X+1)>>8, (X+1)};
+	HAL_SPI_Transmit(&hspi1, Temp_Buffer, 4, 1);
+
+	//ADDRESS
+	//LCD_SetWriteMode(RESET);
+	SPI_WriteCmd(0x2B);
+	LCD_SetWriteMode(SET);
+
+	//YDATA
+	unsigned char Temp_Buffer1[4] = {Y>>8,Y, (Y+1)>>8, (Y+1)};
+	HAL_SPI_Transmit(&hspi1, Temp_Buffer1, 4, 1);
+
+	//ADDRESS
+	//LCD_SetWriteMode(RESET);
+	SPI_WriteCmd(0x2C);
+	LCD_SetWriteMode(SET);
+
+	//COLOUR
+	unsigned char Temp_Buffer2[2] = {Colour>>8, Colour};
+	HAL_SPI_Transmit(&hspi1, Temp_Buffer2, 2, 1);
+
+}
+
+void LCD_Draw_Rectangle(uint16_t X, uint16_t Y, uint16_t Width, uint16_t Height, uint16_t Colour)
+{
+	if((X >=LCD_WIDTH) || (Y >=LCD_HEIGHT)) return;
+	if((X+Width-1)>=LCD_WIDTH)
+		{
+			Width=LCD_WIDTH-X;
+		}
+	if((Y+Height-1)>=LCD_HEIGHT)
+		{
+			Height=LCD_HEIGHT-Y;
+		}
+	LCD_Set_Address(X, Y, X+Width-1, Y+Height-1);
+	LCD_Draw_Colour_Burst(Colour, Height*Width);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 void SPI_Receive8(uint8_t *data, uint8_t n){
-	//uint8_t * pDataRx[10];
-	//HAL_SPI_Receive(&hspi1, (uint8_t*) pDataRx, 4, 1000);
-
-	//HAL_SPI_Receive(&hspi1, &data, n, 999999);
 	HAL_SPI_TransmitReceive(&hspi1, (uint8_t*)data, (uint8_t*)data, n, 999999);
 }
 
 void SPIFill16(uint16_t color, uint16_t n) {
-    TFT_CS_RESET;
     SPI_SendCmd(LCD_GRAM);
     while (n != 0) {
         uint16_t ts = (uint16_t) (n > UINT16_MAX ? UINT16_MAX : n);
         SPIFill16(&color, ts);
         n -= ts;
     }
-    //TFT_CS_SET;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 inline void SPIReceiveDataCont8(uint8_t *data) {
     //uint8_t dummy = 0xFF;
@@ -169,59 +469,15 @@ inline void SPIReceiveDataCont8(uint8_t *data) {
 
 }
 
-void LCD_reset() {
-	//TFT_RST_SET;
-	HAL_Delay(10);
-	//TFT_RST_RESET;
-}
+
 
 void LCD_exitStandby() {
 	//TO BE IMPLEMENTED
 }
 
-static void LCD_configure() {
-    //RUN THHROUGH INIT COMMANDS
-	/*uint8_t count;
-    uint8_t *address = (uint8_t *) init_commands;
-
-    TFT_CS_RESET;
-    while (1) {
-        count = *(address++);
-        if (count-- == 0) break;
-        dmaSendCmdCont(*(address++));
-        dmaSendDataCont8(address, count);
-        address += count;
-    }
-    TFT_CS_SET;
-
-    LCD_setOrientation(0);
-	*/
-
-	//HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
-	uint16_t i = 0;
-	for(i ; i<99 ; i++){
-		SPI_SendCmd(init_commands[i]);
-	}
-	//for(i ; i<103 ; i++){
-	//		SPI_SendCmd(init_commands2[i]);
-	//	}
-	//HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
 
 
-	LCD_setOrientation(0);
 
-}
-
-void LCD_init() {
-    //LCD_pinsInit();
-    //dmaInit();
-	TFT_CS_RESET;
-    LCD_reset();
-    //LCD_exitStandby();
-    LCD_configure();
-
-    //TFT_LED_SET;
-}
 
 //</editor-fold>
 
@@ -244,24 +500,6 @@ void LCD_setOrientation(uint8_t o) {
 }
 
 inline void LCD_setAddressWindow(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2) {
-    /*uint16_t pointData[2];
-
-    TFT_CS_RESET;
-    dmaSendCmdCont(LCD_COLUMN_ADDR);
-    pointData[0] = x1;
-    pointData[1] = x2;
-    LCD_setSpi16();
-    dmaSendDataCont16(pointData, 2);
-    LCD_setSpi8();
-
-    dmaSendCmdCont(LCD_PAGE_ADDR);
-    pointData[0] = y1;
-    pointData[1] = y2;
-    LCD_setSpi16();
-    dmaSendDataCont16(pointData, 2);
-    LCD_setSpi8();
-    TFT_CS_SET;*/
-
 	uint16_t pointData[2];
 	//TFT_CS_RESET;
 	SPI_SendCmd(LCD_COLUMN_ADDR);
@@ -277,16 +515,14 @@ inline void LCD_setAddressWindow(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t
 	LCD_setSpi16();
 	SPI_SendCmd16(pointData, 2);
 	LCD_setSpi8();
-
-	//TFT_CS_SET;
 }
 
 inline uint16_t LCD_getWidth() {
-    return screen_width;
+    //return screen_width;
 }
 
 inline uint16_t LCD_getHeight() {
-    return screen_height;
+    //return screen_height;
 }
 
 //</editor-fold>
@@ -304,6 +540,6 @@ inline void LCD_setSpi16(void) {
 	HAL_SPI_DeInit(&hspi1);
 	hspi1.Init.DataSize = SPI_DATASIZE_16BIT;
 	HAL_SPI_Init(&hspi1);
-}
+}*/
 
 // </editor-fold>

@@ -213,7 +213,7 @@ void LCD_setVerticalScrolling(uint16_t startY, uint16_t endY) {
     dmaSendCmd(LCD_VSCRDEF);
     uint16_t d[] = {
             startY,
-            (uint16_t) (LCD_PIXEL_HEIGHT - startY - endY),
+            (uint16_t) (LCD_SCREEN_HEIGHT - startY - endY),
             endY
     };
     LCD_setSpi16();

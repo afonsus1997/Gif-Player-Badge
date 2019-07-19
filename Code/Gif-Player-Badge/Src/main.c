@@ -20,8 +20,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "../Lib/ILI9341/core.h"
-#include "../Lib/ILI9341/control.h"
+#include <string.h>
+#include "../Lib/ILI9341/commands.h"
+
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -64,6 +66,8 @@ static void MX_SPI1_Init(void);
 
 /* USER CODE END 0 */
 
+
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -90,69 +94,77 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
-  uint8_t rxbuf[5];
+
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
-  HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
 
   LCD_init();
-  HAL_Delay(5);
-  SPI_SendCmd(0x04);
-  SPI_Receive8(&rxbuf, 5);
+  HAL_Delay(10);
+  SPI_WriteCmd(0x34);
+  //;
+  /*LCD_Fill_Screen(LCD_WHITE);
 
-
-  //SPI_SendCmd(0x29); //DISPLAY ON
-  //SPI_SendCmd(0x38); //IDLE MODE OFF
-  //SPI_SendCmd(0x21); //INVERT DISPLAY
-
-  SPI_SendCmd(0x52); //READ BRIGHTNESS
-  SPI_Receive8(rxbuf, 2);
-
-  HAL_GPIO_WritePin(TFT_CD_GPIO_Port, TFT_CD_Pin, RESET);
-  SPI_SendCmd(0x51); //SET BRIGHTNESS
-  HAL_GPIO_WritePin(TFT_CD_GPIO_Port, TFT_CD_Pin, SET);
-  SPI_SendCmd(0x0F);  // TO 00
-  HAL_GPIO_WritePin(TFT_CD_GPIO_Port, TFT_CD_Pin, RESET);
-
-  SPI_SendCmd(0x52); //READ BRIGHTNESS
-  SPI_Receive8(rxbuf, 2);
-
-
-
-  //LCD_setOrientation(0x28);
-  //LCD_fillScreen(DGREEN);
-  //uint8_t buf[2] = {0x01, 0x02};
-  //LCD_readPixels(0, 0, 0, 0, buf);
-  //LCD_readPixels(0, 0, 0, 0, buf);
-  //LCD_readPixels(0, 0, 0, 0, buf);
-  //SPI_SendCmd(0x20);
-  //SPI_SendCmd(0x21);
-
-  //LCD_fillScreen(BLACK);
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
-  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
-
-
-
+  for(uint16_t i = 0; i<240; i+=5)
+  		  for(uint16_t j = 0; j<320; j+=25)
+  			  LCD_Draw_Text("Test", j, i, LCD_BLACK, 1, LCD_WHITE);*/
+  LCD_Fill_Screen(LCD_WHITE);
+  	  //HAL_Delay(500);
+  	  //LCD_Fill_Screen(LCD_BLACK);
+  	  //HAL_Delay(200);
+  	  //LCD_WriteFrameBufferTest();
   while (1)
   {
-    /* USER CODE END WHILE */
+	  //LCD_WriteFrameBufferTest();
+	  SPI_WriteCmd(0x38);
+	  LCD_Fill_Screen(LCD_WHITE);
+	  SPI_WriteCmd(0x39);
+	  HAL_Delay(100);
+	  SPI_WriteCmd(0x38);
+	  LCD_Fill_Screen(LCD_BLACK);
+	  SPI_WriteCmd(0x39);
+	  HAL_Delay(100);
+	  SPI_WriteCmd(0x38);
+	  LCD_Fill_Screen(LCD_BLUE);
+	  SPI_WriteCmd(0x39);
+	  HAL_Delay(100);
+	  SPI_WriteCmd(0x38);
+	  LCD_Fill_Screen(LCD_RED);
+	  SPI_WriteCmd(0x39);
+	  HAL_Delay(100);
 
-    /* USER CODE BEGIN 3 */
-	  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, RESET);
-	  //HAL_Delay(500);
-	  //HAL_GPIO_WritePin(TFT_CS_GPIO_Port, TFT_CS_Pin, SET);
-	  //SPI_SendCmd(0x6);
-	  //HAL_Delay(1);
 
+	  //240 320
+	  //for(uint16_t i = 0; i<240; i++){
+	  	  //for(uint16_t j = 0; j<320; j++){
+			  //LCD_Draw_Pixel(i,j,LCD_BLACK);
+		  	  //}
+	  //}
+
+
+	  /*uint32_t Timer_Counter = 0;
+	  		for(uint32_t j = 0; j < 2; j++)
+	  		{
+	  			HAL_TIM_Base_Start(&htim1);
+	  			for(uint16_t i = 0; i < 10; i++)
+	  			{
+	  				LCD_Fill_Screen(LCD_WHITE);
+	  				LCD_Fill_Screen(LCD_BLACK);
+	  			}
+
+	  			//20.000 per second!
+	  			HAL_TIM_Base_Stop(&htim1);
+	  			Timer_Counter += __HAL_TIM_GET_COUNTER(&htim1);
+	  			__HAL_TIM_SET_COUNTER(&htim1, 0);
+	  		}
+	  		Timer_Counter /= 2;
+	  		char counter_buff[30];
+
+	  		sprintf(counter_buff, "FPS:  %.2f", timer_float);
+	  				LCD_Draw_Text(counter_buff, 10, 50, LCD_BLACK, 2, LCD_WHITE);
+			*/
 
   }
   /* USER CODE END 3 */
@@ -169,24 +181,30 @@ void SystemClock_Config(void)
 
   /** Initializes the CPU, AHB and APB busses clocks 
   */
+
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  //RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
+
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
   /** Initializes the CPU, AHB and APB busses clocks 
   */
+
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+
+  //RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  //RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
@@ -213,13 +231,13 @@ static void MX_SPI1_Init(void)
   /* SPI1 parameter configuration*/
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
-  //hspi1.Init.Direction = SPI_DIRECTION_1LINE;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+  //hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -264,13 +282,13 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin 
-                          |TFT_CD_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_CD_Pin 
+                          |TFT_RST_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : TestPin_Pin LEDPIN_Pin TFT_CS_Pin TFT_RESET_PIN_Pin 
-                           TFT_CD_Pin */
-  GPIO_InitStruct.Pin = TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_RESET_PIN_Pin 
-                          |TFT_CD_Pin;
+  /*Configure GPIO pins : TestPin_Pin LEDPIN_Pin TFT_CS_Pin TFT_CD_Pin 
+                           TFT_RST_Pin */
+  GPIO_InitStruct.Pin = TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_CD_Pin 
+                          |TFT_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -318,3 +336,6 @@ void assert_failed(uint8_t *file, uint32_t line)
 #endif /* USE_FULL_ASSERT */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+
+

@@ -1,4 +1,7 @@
-Src/main.o: ../Src/main.c ../Inc/main.h \
+Lib/ILI9341/GFX.o: ../Lib/ILI9341/GFX.c ../Lib/ILI9341/GFX.h \
+ ../Lib/ILI9341/delay.h ../Lib/ILI9341/commands.h \
+ ../Lib/ILI9341/commands2.h ../Lib/ILI9341/dma.h ../Lib/ILI9341/control.h \
+ ../Lib/ILI9341/config.h ../Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -21,7 +24,21 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
- ../Src/../Lib/ILI9341/commands.h
+ ../Lib/ILI9341/5x5_font.h
+
+../Lib/ILI9341/GFX.h:
+
+../Lib/ILI9341/delay.h:
+
+../Lib/ILI9341/commands.h:
+
+../Lib/ILI9341/commands2.h:
+
+../Lib/ILI9341/dma.h:
+
+../Lib/ILI9341/control.h:
+
+../Lib/ILI9341/config.h:
 
 ../Inc/main.h:
 
@@ -69,4 +86,4 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 
-../Src/../Lib/ILI9341/commands.h:
+../Lib/ILI9341/5x5_font.h:
