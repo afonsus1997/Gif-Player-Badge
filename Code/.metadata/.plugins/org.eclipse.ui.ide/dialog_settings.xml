@@ -7,4 +7,6 @@
 		<item key="DIALOG_HEIGHT" value="394"/>
 		<item key="TOGGLE_SELECTED" value="false"/>
 	</section>
+	<section name="ExternalProjectImportWizard">
+	</section>
 </section>

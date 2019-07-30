@@ -1,125 +1,26 @@
-19:27:34 **** Incremental Build of configuration Debug for project Gif-Player-Badge ****
+00:11:50 **** Incremental Build of configuration Debug for project Gif-Player-Badge ****
 make -j4 all 
-arm-none-eabi-gcc "../Lib/ILI9341/core.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Lib/ILI9341/core.d" -MT"Lib/ILI9341/core.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Lib/ILI9341/core.o"
-../Lib/ILI9341/core.c: In function 'SPI_SendCmd':
-../Lib/ILI9341/core.c:129:27: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-  HAL_SPI_Transmit(&hspi1, &cmd, 1, 0xFFFFFFFFU);
-                           ^
-In file included from ../Inc/stm32f1xx_hal_conf.h:330:0,
-                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
-                 from ../Inc/main.h:31,
-                 from ../Lib/ILI9341/control.h:8,
-                 from ../Lib/ILI9341/core.h:10,
-                 from ../Lib/ILI9341/core.c:1:
-../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:667:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'uint8_t ** {aka unsigned char **}'
- HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-                   ^~~~~~~~~~~~~~~~
-../Lib/ILI9341/core.c: In function 'SPI_SendCmd16':
-../Lib/ILI9341/core.c:141:27: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-  HAL_SPI_Transmit(&hspi1, &cmd, n, 0xFFFFFFFFU);
-                           ^
-In file included from ../Inc/stm32f1xx_hal_conf.h:330:0,
-                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
-                 from ../Inc/main.h:31,
-                 from ../Lib/ILI9341/control.h:8,
-                 from ../Lib/ILI9341/core.h:10,
-                 from ../Lib/ILI9341/core.c:1:
-../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:667:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'uint16_t * {aka short unsigned int *}'
- HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-                   ^~~~~~~~~~~~~~~~
-In file included from ../Lib/ILI9341/core.h:7:0,
-                 from ../Lib/ILI9341/core.c:1:
-../Lib/ILI9341/core.c: In function 'SPIFill16':
-../Lib/ILI9341/commands.h:27:33: warning: passing argument 1 of 'SPI_SendCmd' makes pointer from integer without a cast [-Wint-conversion]
- #define LCD_GRAM                0x2C   /* GRAM register */
-                                 ^
-../Lib/ILI9341/core.c:156:17: note: in expansion of macro 'LCD_GRAM'
-     SPI_SendCmd(LCD_GRAM);
-                 ^~~~~~~~
-../Lib/ILI9341/core.c:126:6: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int'
- void SPI_SendCmd(uint8_t * cmd){
-      ^~~~~~~~~~~
-../Lib/ILI9341/core.c:159:19: warning: passing argument 1 of 'SPIFill16' makes integer from pointer without a cast [-Wint-conversion]
-         SPIFill16(&color, ts);
-                   ^
-../Lib/ILI9341/core.c:154:6: note: expected 'uint16_t {aka short unsigned int}' but argument is of type 'uint16_t * {aka short unsigned int *}'
- void SPIFill16(uint16_t color, uint16_t n) {
-      ^~~~~~~~~
-../Lib/ILI9341/core.c: In function 'LCD_configure':
-../Lib/ILI9341/core.c:202:2: warning: statement with no effect [-Wunused-value]
-  for(i ; i<99 ; i++){
-  ^~~
-../Lib/ILI9341/core.c:203:15: warning: passing argument 1 of 'SPI_SendCmd' makes pointer from integer without a cast [-Wint-conversion]
-   SPI_SendCmd(init_commands[i]);
-               ^~~~~~~~~~~~~
-../Lib/ILI9341/core.c:126:6: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'uint8_t {aka const unsigned char}'
- void SPI_SendCmd(uint8_t * cmd){
-      ^~~~~~~~~~~
-In file included from ../Lib/ILI9341/core.h:7:0,
-                 from ../Lib/ILI9341/core.c:1:
-../Lib/ILI9341/core.c: In function 'LCD_setOrientation':
-../Lib/ILI9341/commands.h:34:33: warning: passing argument 1 of 'SPI_SendCmd' makes pointer from integer without a cast [-Wint-conversion]
- #define LCD_MAC                 0x36   /* Memory Access Control register*/
-                                 ^
-../Lib/ILI9341/core.c:239:17: note: in expansion of macro 'LCD_MAC'
-     SPI_SendCmd(LCD_MAC);
-                 ^~~~~~~
-../Lib/ILI9341/core.c:126:6: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int'
- void SPI_SendCmd(uint8_t * cmd){
-      ^~~~~~~~~~~
-In file included from ../Lib/ILI9341/core.h:7:0,
-                 from ../Lib/ILI9341/core.c:1:
-../Lib/ILI9341/core.c: In function 'LCD_setAddressWindow':
-../Lib/ILI9341/commands.h:25:33: warning: passing argument 1 of 'SPI_SendCmd' makes pointer from integer without a cast [-Wint-conversion]
- #define LCD_COLUMN_ADDR         0x2A   /* Colomn address register */
-                                 ^
-../Lib/ILI9341/core.c:267:14: note: in expansion of macro 'LCD_COLUMN_ADDR'
-  SPI_SendCmd(LCD_COLUMN_ADDR);
-              ^~~~~~~~~~~~~~~
-../Lib/ILI9341/core.c:126:6: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int'
- void SPI_SendCmd(uint8_t * cmd){
-      ^~~~~~~~~~~
-../Lib/ILI9341/core.c:271:16: warning: passing argument 1 of 'SPI_SendCmd16' makes integer from pointer without a cast [-Wint-conversion]
-  SPI_SendCmd16(pointData, 2);
-                ^~~~~~~~~
-../Lib/ILI9341/core.c:138:6: note: expected 'uint16_t {aka short unsigned int}' but argument is of type 'uint16_t * {aka short unsigned int *}'
- void SPI_SendCmd16(uint16_t cmd, uint8_t n){
-      ^~~~~~~~~~~~~
-In file included from ../Lib/ILI9341/core.h:7:0,
-                 from ../Lib/ILI9341/core.c:1:
-../Lib/ILI9341/commands.h:26:33: warning: passing argument 1 of 'SPI_SendCmd' makes pointer from integer without a cast [-Wint-conversion]
- #define LCD_PAGE_ADDR           0x2B   /* Page address register */
-                                 ^
-../Lib/ILI9341/core.c:274:14: note: in expansion of macro 'LCD_PAGE_ADDR'
-  SPI_SendCmd(LCD_PAGE_ADDR);
-              ^~~~~~~~~~~~~
-../Lib/ILI9341/core.c:126:6: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int'
- void SPI_SendCmd(uint8_t * cmd){
-      ^~~~~~~~~~~
-../Lib/ILI9341/core.c:278:16: warning: passing argument 1 of 'SPI_SendCmd16' makes integer from pointer without a cast [-Wint-conversion]
-  SPI_SendCmd16(pointData, 2);
-                ^~~~~~~~~
-../Lib/ILI9341/core.c:138:6: note: expected 'uint16_t {aka short unsigned int}' but argument is of type 'uint16_t * {aka short unsigned int *}'
- void SPI_SendCmd16(uint16_t cmd, uint8_t n){
-      ^~~~~~~~~~~~~
-At top level:
-../Lib/ILI9341/core.c:82:13: warning: 'LCD_pinsInit' defined but not used [-Wunused-function]
- static void LCD_pinsInit() {
-             ^~~~~~~~~~~~
-../Lib/ILI9341/core.c:50:22: warning: 'init_commands2' defined but not used [-Wunused-const-variable=]
- static const uint8_t init_commands2[] = {
-                      ^~~~~~~~~~~~~~
-arm-none-eabi-g++ -o "Gif-Player-Badge.elf" @"objects.list"   -mcpu=cortex-m3 -T"F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gif-Player-Badge.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+arm-none-eabi-gcc "../Lib/Flash/w25qxx.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Lib/Flash/w25qxx.d" -MT"Lib/Flash/w25qxx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Lib/Flash/w25qxx.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.d" -MT"Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o"
+arm-none-eabi-gcc -o "Gif-Player-Badge.elf" @"objects.list"   -mcpu=cortex-m3 -T"F:\Documents\GitHub\Gif-Player-Badge\Code\Gif-Player-Badge\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Gif-Player-Badge.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Gif-Player-Badge.elf
  
-arm-none-eabi-objdump -h -S  Gif-Player-Badge.elf  > "Gif-Player-Badge.list"
 arm-none-eabi-size   Gif-Player-Badge.elf 
+arm-none-eabi-objdump -h -S  Gif-Player-Badge.elf  > "Gif-Player-Badge.list"
    text	   data	    bss	    dec	    hex	filename
-   8272	     24	   1728	  10024	   2728	Gif-Player-Badge.elf
+   9608	     24	   1920	  11552	   2d20	Gif-Player-Badge.elf
 Finished building: default.size.stdout
  
 Finished building: Gif-Player-Badge.list
  
 
-19:27:35 Build Finished. 0 errors, 13 warnings. (took 1s.844ms)
+00:11:54 Build Finished. 0 errors, 0 warnings. (took 3s.459ms)
 

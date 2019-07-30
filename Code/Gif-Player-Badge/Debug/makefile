@@ -12,6 +12,7 @@ RM := rm -rf
 -include Src/subdir.mk
 -include Lib/ugui/subdir.mk
 -include Lib/ILI9341/subdir.mk
+-include Lib/Flash/subdir.mk
 -include Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
 -include subdir.mk
 -include objects.mk

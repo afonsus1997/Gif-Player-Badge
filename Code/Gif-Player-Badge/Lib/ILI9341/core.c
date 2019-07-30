@@ -1,5 +1,5 @@
 #include "core.h"
-
+#include "main.h"
 volatile uint16_t LCD_HEIGHT = LCD_SCREEN_HEIGHT;
 volatile uint16_t LCD_WIDTH	 = LCD_SCREEN_WIDTH;
 
@@ -39,8 +39,16 @@ void SPI_Send(uint8_t * cmd){
 }
 
 void SPI_WriteCmd(uint8_t * cmd){
+#ifndef USE_DMA
 	LCD_SetWriteMode(RESET);
 	HAL_SPI_Transmit(&hspi1, &cmd, 1, 0xFFFFFFFFU);
+#endif
+
+#ifdef USE_DMA
+	LCD_SetWriteMode(RESET);
+	HAL_SPI_TransmitReceive_DMA(&hspi1, &cmd, &cmd, Size)
+#endif
+
 }
 
 void SPI_WriteCmdData(uint8_t * cmd){
@@ -238,9 +246,9 @@ void LCD_configure() {
 	SPI_WriteCmd(0x29);
 
 	//STARTING ROTATION
-	//LCD_Set_Rotation(SCREEN_VERTICAL_1);
+	LCD_Set_Rotation(SCREEN_VERTICAL_1);
 	//LCD_Set_Rotation(SCREEN_VERTICAL_2);
-	LCD_Set_Rotation(SCREEN_HORIZONTAL_1);
+	//LCD_Set_Rotation(SCREEN_HORIZONTAL_1);
 
 }
 
@@ -283,7 +291,7 @@ void LCD_Draw_Colour_Burst(uint16_t Colour, uint32_t Size)
 	{
 		for(uint32_t j = 0; j < (Sending_in_Block); j++)
 			{
-			HAL_SPI_Transmit(&hspi1, (unsigned char *)burst_buffer, Buffer_Size, 10);
+			HAL_SPI_Transmit(&hspi1, burst_buffer, Buffer_Size, 10);
 			}
 	}
 
@@ -292,23 +300,49 @@ void LCD_Draw_Colour_Burst(uint16_t Colour, uint32_t Size)
 
 }
 
+extern DMA_HandleTypeDef hdma_spi1_tx;
 
 void LCD_WriteFrameBufferTest(){
-	uint16_t buf[2] = {LCD_BLACK, LCD_WHITE};
-	LCD_Set_Address(0,0,LCD_WIDTH,LCD_HEIGHT);
-	LCD_SetWriteMode(SET);
-	int32_t i=0;
-	for (i = 0; i < 320*240*2; ++i) {
-		HAL_SPI_Transmit(&hspi1, &buf[1], 1, 9999);
-	}
+	uint16_t buf1[2] = {LCD_BLACK, LCD_BLACK};
+	uint16_t buf2[2] = {LCD_WHITE, LCD_WHITE};
 
 	LCD_Set_Address(0,0,LCD_WIDTH,LCD_HEIGHT);
-	HAL_Delay(100);
 	LCD_SetWriteMode(SET);
-	for (i = 0; i < 320*240*2; ++i) {
-			HAL_SPI_Transmit(&hspi1, &buf[0], 1, 9999);
-		}
-	HAL_Delay(100);
+
+	HAL_SPI_MspDeInit(&hdma_spi1_tx);
+	hdma_spi1_tx.Instance = DMA1_Channel3;
+	hdma_spi1_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
+	hdma_spi1_tx.Init.PeriphInc = DMA_PINC_DISABLE;
+	hdma_spi1_tx.Init.MemInc = DMA_MINC_ENABLE;
+	hdma_spi1_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+	hdma_spi1_tx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
+	hdma_spi1_tx.Init.Mode = DMA_CIRCULAR;
+	hdma_spi1_tx.Init.Priority = DMA_PRIORITY_VERY_HIGH;
+	//hdma_spi1_tx.DmaBaseAddress = buf1;
+	HAL_DMA_Init(&hdma_spi1_tx);
+
+	HAL_SPI_Transmit_DMA(&hspi1, &buf1, 1);
+//	 HAL_DMA_Abort(&hdma_spi1_tx);
+//	 HAL_SPI_MspDeInit(&hdma_spi1_tx);
+//	 HAL_DMA_Init(&hdma_spi1_tx);
+//	 HAL_SPI_Transmit_DMA(&hspi1, &buf2, 1);
+	 //HAL_SPI_MspDeInit(&hdma_spi1_tx);
+	 //HAL_DMA_Init(&hdma_spi1_tx);
+	 //HAL_SPI_Transmit_DMA(&hspi1, &buf2, 320);
+	 //HAL_SPI_MspDeInit(&hdma_spi1_tx);
+
+	//for (i = 0; i < 320*240*2; ++i) {
+	//	HAL_SPI_Transmit(&hspi1, &buf[1], 1, 9999);
+	//}
+
+	//LCD_Set_Address(0,0,LCD_WIDTH,LCD_HEIGHT);
+	//HAL_Delay(100);
+	//LCD_SetWriteMode(SET);
+	//HAL_SPI_Transmit_DMA(&hspi1, &buf2, LCD_HEIGHT*LCD_WIDTH*2);
+	//for (i = 0; i < 320*240*2; ++i) {
+	//		HAL_SPI_Transmit(&hspi1, &buf[0], 1, 9999);
+	//	}
+	//HAL_Delay(100);
 
 
 

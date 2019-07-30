@@ -24,6 +24,7 @@ Lib/ILI9341/GFX.o: ../Lib/ILI9341/GFX.c ../Lib/ILI9341/GFX.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Lib/ILI9341/5x5_font.h
 
 ../Lib/ILI9341/GFX.h:
@@ -85,5 +86,7 @@ Lib/ILI9341/GFX.o: ../Lib/ILI9341/GFX.c ../Lib/ILI9341/GFX.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
+
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 
 ../Lib/ILI9341/5x5_font.h:

@@ -8,6 +8,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="DMA_InitStructure"/>
+			<item value="DMA"/>
 			<item value="0x29"/>
 			<item value="ox29"/>
 			<item value="0x13"/>

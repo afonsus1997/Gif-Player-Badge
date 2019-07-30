@@ -20,9 +20,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <string.h>
-#include "../Lib/ILI9341/commands.h"
-
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -46,7 +43,10 @@
 
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_tx;
+
+UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 
@@ -57,6 +57,8 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_SPI2_Init(void);
+static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -65,8 +67,6 @@ static void MX_SPI1_Init(void);
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
-
-
 
 /**
   * @brief  The application entry point.
@@ -99,73 +99,22 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_SPI1_Init();
+  MX_SPI2_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  LCD_init();
-  HAL_Delay(10);
-  SPI_WriteCmd(0x34);
-  //;
-  /*LCD_Fill_Screen(LCD_WHITE);
+  /* USER CODE END 2 */
 
-  for(uint16_t i = 0; i<240; i+=5)
-  		  for(uint16_t j = 0; j<320; j+=25)
-  			  LCD_Draw_Text("Test", j, i, LCD_BLACK, 1, LCD_WHITE);*/
-  LCD_Fill_Screen(LCD_WHITE);
-  	  //HAL_Delay(500);
-  	  //LCD_Fill_Screen(LCD_BLACK);
-  	  //HAL_Delay(200);
-  	  //LCD_WriteFrameBufferTest();
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  LCD_init();
+  LCD_Fill_Screen(0xFFFF);
+  HAL_Delay(250);
   while (1)
   {
-	  //LCD_WriteFrameBufferTest();
-	  SPI_WriteCmd(0x38);
-	  LCD_Fill_Screen(LCD_WHITE);
-	  SPI_WriteCmd(0x39);
-	  HAL_Delay(100);
-	  SPI_WriteCmd(0x38);
-	  LCD_Fill_Screen(LCD_BLACK);
-	  SPI_WriteCmd(0x39);
-	  HAL_Delay(100);
-	  SPI_WriteCmd(0x38);
-	  LCD_Fill_Screen(LCD_BLUE);
-	  SPI_WriteCmd(0x39);
-	  HAL_Delay(100);
-	  SPI_WriteCmd(0x38);
-	  LCD_Fill_Screen(LCD_RED);
-	  SPI_WriteCmd(0x39);
-	  HAL_Delay(100);
+    /* USER CODE END WHILE */
 
-
-	  //240 320
-	  //for(uint16_t i = 0; i<240; i++){
-	  	  //for(uint16_t j = 0; j<320; j++){
-			  //LCD_Draw_Pixel(i,j,LCD_BLACK);
-		  	  //}
-	  //}
-
-
-	  /*uint32_t Timer_Counter = 0;
-	  		for(uint32_t j = 0; j < 2; j++)
-	  		{
-	  			HAL_TIM_Base_Start(&htim1);
-	  			for(uint16_t i = 0; i < 10; i++)
-	  			{
-	  				LCD_Fill_Screen(LCD_WHITE);
-	  				LCD_Fill_Screen(LCD_BLACK);
-	  			}
-
-	  			//20.000 per second!
-	  			HAL_TIM_Base_Stop(&htim1);
-	  			Timer_Counter += __HAL_TIM_GET_COUNTER(&htim1);
-	  			__HAL_TIM_SET_COUNTER(&htim1, 0);
-	  		}
-	  		Timer_Counter /= 2;
-	  		char counter_buff[30];
-
-	  		sprintf(counter_buff, "FPS:  %.2f", timer_float);
-	  				LCD_Draw_Text(counter_buff, 10, 50, LCD_BLACK, 2, LCD_WHITE);
-			*/
-
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -181,30 +130,24 @@ void SystemClock_Config(void)
 
   /** Initializes the CPU, AHB and APB busses clocks 
   */
-
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  //RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
-
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
   /** Initializes the CPU, AHB and APB busses clocks 
   */
-
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-
-  //RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  //RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
@@ -236,8 +179,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  //hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -249,6 +191,77 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
+
+}
+
+/**
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI2_Init(void)
+{
+
+  /* USER CODE BEGIN SPI2_Init 0 */
+
+  /* USER CODE END SPI2_Init 0 */
+
+  /* USER CODE BEGIN SPI2_Init 1 */
+
+  /* USER CODE END SPI2_Init 1 */
+  /* SPI2 parameter configuration*/
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI2_Init 2 */
+
+  /* USER CODE END SPI2_Init 2 */
+
+}
+
+/**
+  * @brief USART3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART3_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART3_Init 0 */
+
+  /* USER CODE END USART3_Init 0 */
+
+  /* USER CODE BEGIN USART3_Init 1 */
+
+  /* USER CODE END USART3_Init 1 */
+  huart3.Instance = USART3;
+  huart3.Init.BaudRate = 115200;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
+  huart3.Init.StopBits = UART_STOPBITS_1;
+  huart3.Init.Parity = UART_PARITY_NONE;
+  huart3.Init.Mode = UART_MODE_TX_RX;
+  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART3_Init 2 */
+
+  /* USER CODE END USART3_Init 2 */
 
 }
 
@@ -280,19 +293,30 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_CD_Pin 
-                          |TFT_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|SDCARD_CS_Pin 
+                          |TFT_CD_Pin|TFT_RST_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : TestPin_Pin LEDPIN_Pin TFT_CS_Pin TFT_CD_Pin 
-                           TFT_RST_Pin */
-  GPIO_InitStruct.Pin = TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|TFT_CD_Pin 
-                          |TFT_RST_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(FLASH_CS_GPIO_Port, FLASH_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : TestPin_Pin LEDPIN_Pin TFT_CS_Pin SDCARD_CS_Pin 
+                           TFT_CD_Pin TFT_RST_Pin */
+  GPIO_InitStruct.Pin = TestPin_Pin|LEDPIN_Pin|TFT_CS_Pin|SDCARD_CS_Pin 
+                          |TFT_CD_Pin|TFT_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : FLASH_CS_Pin */
+  GPIO_InitStruct.Pin = FLASH_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(FLASH_CS_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : SWITCHPIN_Pin */
   GPIO_InitStruct.Pin = SWITCHPIN_Pin;
@@ -336,6 +360,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 #endif /* USE_FULL_ASSERT */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
-
-

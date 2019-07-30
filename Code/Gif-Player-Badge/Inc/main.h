@@ -64,6 +64,10 @@ void Error_Handler(void);
 #define LEDPIN_GPIO_Port GPIOA
 #define TFT_CS_Pin GPIO_PIN_2
 #define TFT_CS_GPIO_Port GPIOA
+#define SDCARD_CS_Pin GPIO_PIN_4
+#define SDCARD_CS_GPIO_Port GPIOA
+#define FLASH_CS_Pin GPIO_PIN_0
+#define FLASH_CS_GPIO_Port GPIOB
 #define SWITCHPIN_Pin GPIO_PIN_8
 #define SWITCHPIN_GPIO_Port GPIOA
 #define TFT_CD_Pin GPIO_PIN_10
